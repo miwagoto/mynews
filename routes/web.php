@@ -28,6 +28,7 @@ use App\Http\Controllers\Admin\ProfileController;
 Route::controller(ProfileController::class)->prefix('admin')->group(function(){
     Route::get('profile/create', 'add');
     Route::get('profile/edit' ,'edit');
-})
+});
+
 
 
