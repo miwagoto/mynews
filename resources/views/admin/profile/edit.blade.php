@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>プロフィール紹介</h2>
-                <form action="{{ route('admin.profile.create') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('admin.profile.update') }}" method="post" enctype="multipart/form-data">
 
                     @if (count($errors) > 0)
                         <ul>
@@ -23,25 +23,25 @@
                     <div class="form-group row">
                         <label class="col-md-2">名前(name)</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                            <input type="text" class="form-control" name="name" value="{{ $profile_form->name }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2">性別(gender)</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="gender" value="{{ old('gender') }}">
+                            <input type="text" class="form-control" name="gender" value="{{ $profile_form->gender }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2">趣味(hobby)</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="hobby" rows="20">{{ old('hobby') }}</textarea>
+                            <textarea class="form-control" name="hobby" rows="20">{{ $profile_form->hobby }}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2">自己紹介欄(introduction)</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="introduction" rows="20">{{ old('introduction') }}</textarea>
+                            <textarea class="form-control" name="introduction" rows="20">{{ $profile_form->introduction }}</textarea>
                         </div>
                     </div>
                     @csrf
