@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 use App\Models\Profile;
 
+// 以下の2行を追記することで、History Model, Carbonクラスが扱えるようになる
+use App\Models\History;
+use Carbon\Carbon;
+
 class ProfileController extends Controller
 {
     public function add()
@@ -43,6 +47,11 @@ class ProfileController extends Controller
 
     public function update()
     {
+        $history = new History();
+        $history->news_id = $news->id;
+        $history->edited_at = Carbon::now();
+        $history->save();
+
         return redirect('admin/profile/edit');
     }
     //

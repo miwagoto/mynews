@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('news_id');
             $table->string('edited_at');
+            $table->bigInteger('news_id');
             $table->timestamps();
         });
     }
