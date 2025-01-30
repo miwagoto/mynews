@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Profile;
 
-// 以下の2行を追記することで、History Model, Carbonクラスが扱えるようになる
-use App\Models\History;
+// 以下の2行を追記することで、ProfileHistory Model, Carbonクラスが扱えるようになる
+use App\Models\ProfileHistory;
 use Carbon\Carbon;
 
 class ProfileController extends Controller
@@ -47,8 +47,18 @@ class ProfileController extends Controller
 
     public function update()
     {
-        $history = new History();
-        $history->news_id = $news->id;
+        $this->validate($request, Profile::$rules);
+        // News Modelからデータを取得する
+        $news = Profile::find($request->id);
+        // 送信されてきたフォームデータを格納する
+        $profile_form = $request->all();
+
+        unset($profile_form['_token']);
+
+        $profile->fill($profile_form)->save();
+
+        $history = new ProfileHistory();
+        $history->profile_id = $profile->id;
         $history->edited_at = Carbon::now();
         $history->save();
 
